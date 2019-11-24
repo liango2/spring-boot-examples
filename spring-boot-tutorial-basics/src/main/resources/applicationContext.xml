@@ -8,6 +8,12 @@
 
 	<!-- <context:component-scan base-package="com.in28minutes.spring.basics"/> -->
 
+	<!--
+	   MySpringContextHolder： 我的自定义工具类  主要用于：那些没有归入spring框架管理的类却要调用spring容器中的bean提供的工具类。
+	-->
+	<bean class=" com.in28minutes.springboot.tutorial.basics.example.application.context.java.MySpringContextHolder"  />
+
+
 	<bean id="xmlStringBean1" class="java.lang.String">
 		<constructor-arg value="stringBean1" />
 	</bean>

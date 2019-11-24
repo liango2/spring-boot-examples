@@ -139,12 +139,12 @@ public class AfterAopAspect {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@AfterReturning(value = "execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))", 
+	@AfterReturning(value = "execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))",
 			returning = "result")
 	public void afterReturning(JoinPoint joinPoint, Object result) {
 		logger.info("{} returned with value {}", joinPoint, result);
 	}
-	
+
 	@After(value = "execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))")
 	public void after(JoinPoint joinPoint) {
 		logger.info("after execution of {}", joinPoint);
@@ -162,16 +162,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.in28minutes.springboot.tutorial.basics.example.aop.data.Dao1;
+import com.in28minutes.springboot.tutorial.basics.example.aop.dao.Dao1;
 
 @Service
 public class Business1 {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private Dao1 dao1;
-	
+
 	public String calculateSomething(){
 		//Business Logic
 		String value = dao1.retrieveSomething();
@@ -190,14 +190,14 @@ package com.in28minutes.springboot.tutorial.basics.example.aop.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.in28minutes.springboot.tutorial.basics.example.aop.data.Dao2;
+import com.in28minutes.springboot.tutorial.basics.example.aop.dao.Dao2;
 
 @Service
 public class Business2 {
-	
+
 	@Autowired
 	private Dao2 dao2;
-	
+
 	public String calculateSomething(){
 		//Business Logic
 		return dao2.retrieveSomething();
@@ -213,19 +213,19 @@ package com.in28minutes.springboot.tutorial.basics.example.aop;
 import org.aspectj.lang.annotation.Pointcut;
 
 public class CommonJoinPointConfig {
-	
+
 	@Pointcut("execution(* com.in28minutes.springboot.basics.example.aop.data.*.*(..))")
 	public void dataLayerExecution(){}
-	
+
 	@Pointcut("execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))")
 	public void businessLayerExecution(){}
-	
+
 	@Pointcut("dataLayerExecution() && businessLayerExecution()")
 	public void allLayerExecution(){}
-	
+
 	@Pointcut("bean(*dao*)")
 	public void beanContainingDao(){}
-	
+
 	@Pointcut("within(com.in28minutes.springboot.basics.example.aop.data..*)")
 	public void dataLayerExecutionWithWithin(){}
 
@@ -239,12 +239,12 @@ public class CommonJoinPointConfig {
 ### /src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/data/Dao1.java
 
 ```java
-package com.in28minutes.springboot.tutorial.basics.example.aop.data;
+package com.in28minutes.springboot.tutorial.basics.example.aop.dao;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class Dao1 {
-	
+
 	public String retrieveSomething(){
 		return "Dao1";
 	}
@@ -256,7 +256,7 @@ public class Dao1 {
 ### /src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/data/Dao2.java
 
 ```java
-package com.in28minutes.springboot.tutorial.basics.example.aop.data;
+package com.in28minutes.springboot.tutorial.basics.example.aop.dao;
 
 import org.springframework.stereotype.Repository;
 
@@ -287,9 +287,9 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 @Configuration
 public class UserAccessAspect {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	//What kind of method calls I would intercept
 	//execution(* PACKAGE.*.*(..))
 	//Weaving & Weaver
@@ -313,12 +313,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JavaConfiguration {
-	
+
 	@Bean
 	public String someDummyBean1() {
 		return "someDummyBean1";
 	}
-	
+
 	@Bean
 	public String someDummyBean2() {
 		return "someDummyBean2";

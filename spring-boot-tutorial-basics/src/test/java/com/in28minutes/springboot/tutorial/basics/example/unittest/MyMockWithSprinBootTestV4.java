@@ -6,12 +6,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.SingletonBeanRegistry;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -21,10 +19,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BusinessServicesMockSpringContextTestV2 {
-
-	@Autowired
-	private ApplicationContext context;
+public class MyMockWithSprinBootTestV4 {
 
 	@MockBean
 	DataService dataServiceMock;
@@ -33,6 +28,8 @@ public class BusinessServicesMockSpringContextTestV2 {
 	BusinessService businessImpl;
 
 
+	@Autowired
+	private ApplicationContext context;
 
 
 	@Test

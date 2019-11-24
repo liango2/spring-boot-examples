@@ -1,4 +1,4 @@
-package com.in28minutes.springboot.tutorial.basics.example.aop.data;
+package com.in28minutes.springboot.tutorial.basics.example.aop.dao;
 
 import org.springframework.stereotype.Repository;
 

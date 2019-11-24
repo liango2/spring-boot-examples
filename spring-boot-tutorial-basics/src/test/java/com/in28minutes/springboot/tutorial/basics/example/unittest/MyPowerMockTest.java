@@ -14,24 +14,17 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 //@RunWith(MockitoJUnitRunner.class)
 @RunWith(PowerMockRunner.class)
 //重要的事说三遍： 如果要mock静态方法，必须要在PrepareForTest后面加上该方法所在的类。
 @PrepareForTest(MyUtils.class)
-//@PrepareForTest(HttpRequest.class)
-// SpringBootTest必须要使用SpringRunner才能生效
-//但RunWith没有办法指定多个，可以通过PowerMockRunnerDelegate来解决这个问题：
-@PowerMockRunnerDelegate(SpringRunner.class)
-@PowerMockIgnore("javax.management.*")
-@SpringBootTest
-public class MyServicesPowerMockAndSpringBootTest {
+//@PowerMockIgnore("javax.management.*")
+public class MyPowerMockTest {
     @Mock
     DataService dataServiceMock;
 
